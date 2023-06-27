@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 
 int main() {
 	int L;
@@ -9,16 +8,20 @@ int main() {
 	scanf("%d", &L);
 	scanf("%s", apb);
 
-	int H = 0;
+	long long int H = 0;
 	int M = 1234567891;
 	int r = 31;
 
 	int str_length = strlen(apb);
 	for (int i = 0; i < str_length; i++) {
-		H += ((apb[i] - 96) * (int)pow(r, i)) % M;
+		int p = 1;
+		for (int j = 0; j < i; j++)
+			p *= r;
+
+		H += ((apb[i] - 96) * p);
 	}
 
-	printf("%d", H);
+	printf("%lld", H % M);
 
 	return 0;
 }
